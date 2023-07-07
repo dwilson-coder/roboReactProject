@@ -7,6 +7,7 @@ import ErrorBoundry from "../components/ErrorBoundry";
 function App() {
   const [robots, setRobots] = useState([]);
   const [searchfield, setSearchfiled] = useState("");
+  const [count, setCount] = useState(0);
 
   // constructor() {
   //   super();
@@ -26,8 +27,9 @@ function App() {
       .then((response) => response.json())
       .then((users) => {
         setRobots(users);
-      }, []);
-  });
+      });
+    console.log(count);
+  }, [count]);
 
   const onSearchChange = (event) => {
     // this.setState({ searchfield: event.target.value });
@@ -45,6 +47,7 @@ function App() {
   ) : (
     <div className="tc">
       <h1>Robo Friends</h1>
+      <button onClick={() => setCount(count + 1)}>Click Me!</button>
       <SearchBox searchChange={onSearchChange} />
       <Scroll>
         <ErrorBoundry>
